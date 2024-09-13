@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh; /* Added to prevent too large images */
+            overflow: auto; /* In case the image is too large, it will become scrollable */
+        }
+    
+        #questionImage {
+            max-width: 100%; /* Ensure the image fits the container */
+            max-height: 60vh; /* Limit height to ensure it doesn't overflow the viewport */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image */
+            object-fit: contain; /* Ensures the image scales without cropping */
+        }
+    
+        @media (max-width: 600px) {
+            .quiz-container {
+                max-height: 70vh; /* Slightly reduce the container height on smaller screens */
+            }
+    
+            #questionImage {
+                max-height: 50vh; /* Limit the image height further on small screens */
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .options div {
+            margin-bottom: 10px;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    
+        .navigation-buttons button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    
+        .navigation-buttons button:hover {
+            background-color: #0056b3;
+        }
+    
+        /* Add media query for mobile screen sizes */
+        @media (max-width: 600px) {
+            .navigation-buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 10px; /* Add gap between buttons */
+            }
+    
+            .navigation-buttons button {
+                margin: 0; /* Reset margins for better alignment */
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+        
+
+        .countdown-container {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: red;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: red;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        .question-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        /* For larger screens (desktops and laptops) */
+        @media (min-width: 1024px) {
+            .question-number {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* For tablets (medium-sized screens) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .question-number {
+                font-size: 1.75rem;
+                margin-bottom: 12px;
+            }
+        }
+        
+        /* For mobile screens (small devices) */
+        @media (max-width: 767px) {
+            .question-number {
+                font-size: 1.25rem;
+                margin-bottom: 8px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <!-- Remove the <h2> and replace it with an image tag -->
+        <div id="questionNumber" class="question-number"></div>
+        <img id="questionImage" src="" alt="Question Image" style="width: 100%; height: auto;" /> <!-- Responsive image -->
+
+        <form id="quizForm">
+            <div class="options">
+                <div>
+                    <input type="radio" id="option1" name="option" value="0">
+                    <label for="option1" id="label1">Option 1</label>
+                </div>
+                <div>
+                    <input type="radio" id="option2" name="option" value="1">
+                    <label for="option2" id="label2">Option 2</label>
+                </div>
+                <div>
+                    <input type="radio" id="option3" name="option" value="2">
+                    <label for="option3" id="label3">Option 3</label>
+                </div>
+                <div>
+                    <input type="radio" id="option4" name="option" value="3">
+                    <label for="option4" id="label4">Option 4</label>
+                </div>
+            </div>
+            <div class="navigation-buttons">
+                <button type="button" id="prevBtn" onclick="prevQuestion()">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextQuestion()">Next</button>
+                <button type="button" id="submitBtn" onclick="submitQuiz()">Submit</button>
+            </div>
+        </form>
+        <div class="countdown-container">
+            <span id="countdown">120:00</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        Developed by MD Faiz Jamal
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

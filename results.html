@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .results-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .clear-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .clear-button:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 400px) {
+            th, td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .button, .clear-button {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <h2>Quiz Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+            </tbody>
+        </table>
+        <button class="button" onclick="logout()">Logout</button>
+        <button class="clear-button" onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const results = JSON.parse(localStorage.getItem('results')) || {};
+            const resultsTableBody = document.getElementById('resultsTableBody');
+
+            for (const [username, score] of Object.entries(results)) {
+                const row = document.createElement('tr');
+                const usernameCell = document.createElement('td');
+                const scoreCell = document.createElement('td');
+
+                usernameCell.textContent = username;
+                scoreCell.textContent = score;
+
+                row.appendChild(usernameCell);
+                row.appendChild(scoreCell);
+
+                resultsTableBody.appendChild(row);
+            }
+        });
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function clearResults() {
+            // Clear results from local storage
+            localStorage.removeItem('results');
+            // Clear the table body
+            const resultsTableBody = document.getElementById('resultsTableBody');
+            while (resultsTableBody.firstChild) {
+                resultsTableBody.removeChild(resultsTableBody.firstChild);
+            }
+        }
+    </script>
+</body>
+</html>
