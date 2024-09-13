@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('upload/bgpic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        
+        .heading {
+            font-size: 5vw;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .login-containers {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            color: black;
+        }
+        
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 4vw;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 3vw;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 3vw;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 3vw;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 3vw;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            font-size: 2vw;
+            color: red;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .heading {
+                font-size: 36px;
+            }
+
+            .login-container h2 {
+                font-size: 24px;
+            }
+
+            .input-group label,
+            .input-group input,
+            button {
+                font-size: 16px;
+            }
+
+            .error-message {
+                font-size: 14px;
+            }
+
+            .footer {
+                font-size: 16px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .login-containers {
+                gap: 40px;
+            }
+
+            .login-container {
+                max-width: 400px;
+            }
+
+            .heading {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">QUIZ APP</h1>
+    <div class="login-containers">
+        <div class="login-container">
+            <h2>Candidate Login</h2>
+            <form id="candidateLoginForm">
+                <div class="input-group">
+                    <label for="userId">User ID:</label>
+                    <input type="text" id="userId" name="userId" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p id="candidate-error-message" class="error-message"></p>
+            </form>
+        </div>
+
+        <div class="login-container">
+            <h2>Admin Login</h2>
+            <form id="authorityLoginForm">
+                <div class="input-group">
+                    <label for="authorityId">Admin ID:</label>
+                    <input type="text" id="authorityId" name="authorityId" required>
+                </div>
+                <div class="input-group">
+                    <label for="authorityPassword">Password:</label>
+                    <input type="password" id="authorityPassword" name="authorityPassword" required>
+                </div>
+                <button type="submit">Login as Admin</button>
+                <p id="authority-error-message" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        Developed by MD Faiz Jamal
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
